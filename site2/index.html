@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glacier Marothia — Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07090c;--card:rgba(255,255,255,.03);--border:rgba(255,255,255,.07);
+  --gold:#d4a843;--gold2:#f0cc72;--teal:#0d8f8f;--teal2:#15c2c2;
+  --text:#e2d9cc;--dim:rgba(226,217,204,.42);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+#dot{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s}
+#ring{position:fixed;width:34px;height:34px;border:1.5px solid rgba(212,168,67,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .1s ease}
+
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:22px 64px;transition:all .35s}
+#nav.solid{background:rgba(7,9,12,.96);backdrop-filter:blur(20px);padding:14px 64px;border-bottom:1px solid rgba(212,168,67,.1)}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:.04em}
+.logo em{color:var(--gold);font-style:normal}
+.links{display:flex;gap:38px;list-style:none}
+.links a{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-decoration:none;position:relative;padding-bottom:3px;transition:color .3s}
+.links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.links a:hover,.links a.on{color:var(--gold)}
+.links a:hover::after,.links a.on::after{width:100%}
+.hire{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;background:var(--gold);color:#07090c;padding:10px 26px;border-radius:2px;text-decoration:none;transition:all .3s}
+.hire:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,168,67,.35)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:3px}
+.burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+/* MOBILE MENU */
+#mob{display:none;position:fixed;inset:0;z-index:900;background:rgba(7,9,12,.97);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px}
+#mob.open{display:flex}
+#mob a{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:rgba(255,255,255,.6);text-decoration:none;transition:.3s}
+#mob a:hover,#mob a.on{color:var(--gold)}
+#mob .close{position:absolute;top:26px;right:32px;background:none;border:none;color:rgba(255,255,255,.3);font-size:1.5rem;cursor:pointer;transition:.3s}
+#mob .close:hover{color:var(--gold)}
+
+/* SIDE DOTS */
+.sdots{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:700;display:flex;flex-direction:column;gap:12px}
+.sd{display:block;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);text-decoration:none;transition:all .3s;position:relative}
+.sd:hover,.sd.on{background:var(--gold);transform:scale(1.5)}
+.sd::before{content:attr(data-t);position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(7,9,12,.9);padding:3px 10px;border-radius:2px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+.sd:hover::before{opacity:1}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.glow{position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 72% 32%,rgba(13,143,143,.22) 0%,transparent 52%),radial-gradient(ellipse 55% 55% at 12% 68%,rgba(212,168,67,.11) 0%,transparent 48%)}
+.grid{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(212,168,67,.06) 1px,transparent 1px);background-size:52px 52px}
+.vline{position:absolute;left:26%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(212,168,67,.15),transparent)}
+.hero-in{position:relative;z-index:2;padding:100px 64px 0;width:100%;max-width:1380px;margin:0 auto}
+.tag{display:inline-flex;align-items:center;gap:12px;font-size:.63rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:up .8s .1s forwards}
+.tag::before{content:'';width:28px;height:1px;background:var(--gold)}
+h1.name{font-family:'Playfair Display',serif;font-size:clamp(4rem,10.5vw,9.5rem);font-weight:900;line-height:.88;letter-spacing:-.02em;opacity:0;animation:up .9s .26s forwards}
+h1.name .a{display:block;color:#fff}
+h1.name .b{display:block;color:transparent;-webkit-text-stroke:1.5px rgba(212,168,67,.72);font-style:italic;font-weight:400}
+.sub{margin-top:22px;font-size:clamp(.82rem,1.4vw,1rem);font-weight:300;color:var(--dim);letter-spacing:.06em;max-width:490px;line-height:1.9;opacity:0;animation:up .8s .44s forwards}
+.btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;opacity:0;animation:up .8s .6s forwards}
+.bg{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#07090c;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:15px 36px;border-radius:2px;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(212,168,67,.22)}
+.bg:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(212,168,67,.38);color:#07090c}
+.bo{background:transparent;color:var(--gold);border:1.5px solid rgba(212,168,67,.35);font-size:.7rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;padding:13px 36px;border-radius:2px;text-decoration:none;transition:all .3s}
+.bo:hover{border-color:var(--gold);background:rgba(212,168,67,.08)}
+
+/* PROFILE CARD */
+.pcard{position:absolute;right:80px;top:50%;transform:translateY(-50%);opacity:0;animation:fromR .9s .78s forwards}
+.pc{width:268px;background:var(--card);border:1px solid rgba(212,168,67,.14);border-radius:4px;padding:28px 22px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold))}
+.pc-img{width:82px;height:82px;border-radius:50%;overflow:hidden;margin:0 auto 14px;border:2.5px solid rgba(212,168,67,.44)}
+.pc-img img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.pc h3{font-family:'Playfair Display',serif;font-size:1.05rem;text-align:center;color:#fff;margin-bottom:2px}
+.pc p{font-size:.67rem;text-align:center;color:var(--dim);letter-spacing:.09em;margin-bottom:18px}
+.pc-stats{display:flex;border-top:1px solid var(--border)}
+.pcs{flex:1;text-align:center;padding:12px 0;border-right:1px solid var(--border)}
+.pcs:last-child{border:none}
+.pcs-n{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--gold);display:block;line-height:1}
+.pcs-l{font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:2px}
+.pc-av{margin-top:14px;background:rgba(13,143,143,.14);border:1px solid rgba(21,194,194,.22);border-radius:2px;padding:8px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:.61rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal2)}
+.av-d{width:6px;height:6px;border-radius:50%;background:var(--teal2);animation:blink 1.6s infinite}
+
+/* TICKER */
+.ticker{position:absolute;bottom:0;left:0;right:0;background:rgba(212,168,67,.05);border-top:1px solid rgba(212,168,67,.1);padding:12px 0;overflow:hidden;opacity:0;animation:fade .8s 1.1s forwards}
+.track{display:flex;white-space:nowrap;animation:tick 34s linear infinite}
+.ti{font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(212,168,67,.44);padding:0 34px;display:inline-flex;align-items:center;gap:12px}
+.ti::after{content:'◆';font-size:.38rem;color:var(--teal)}
+.arr{position:absolute;bottom:76px;right:64px;display:flex;flex-direction:column;align-items:center;gap:7px;opacity:0;animation:fade .8s 1.3s forwards}
+.arr span{font-size:.57rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);writing-mode:vertical-rl}
+.arr-l{width:1px;height:52px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sc 2s ease-in-out infinite}
+
+/* STRENGTHS */
+#str{padding:110px 64px;background:var(--bg)}
+.wrap{max-width:1160px;margin:0 auto}
+.eye{font-size:.63rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:11px;margin-bottom:9px}
+.eye::before{content:'';width:22px;height:1px;background:var(--gold)}
+h2.st{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:700;line-height:1;color:#fff}
+h2.st em{font-style:italic;color:var(--gold)}
+.bar{width:68px;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin:22px 0 46px}
+.scards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:36px}
+.sc{background:var(--card);padding:42px 34px;position:relative;overflow:hidden;transition:all .4s;cursor:default}
+.sc:hover{background:rgba(255,255,255,.05);transform:translateY(-4px)}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:.4s}
+.sc:hover::before{opacity:1}
+.sc-n{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:rgba(212,168,67,.07);line-height:1;margin-bottom:16px}
+.sc-i{width:44px;height:44px;border:1px solid rgba(21,194,194,.22);border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--teal2);font-size:.9rem;margin-bottom:18px;background:rgba(13,143,143,.1)}
+.sc h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:10px}
+.sc p{font-size:.82rem;line-height:1.8;color:var(--dim)}
+.qb{margin-top:62px;padding:58px 70px;text-align:center;background:linear-gradient(135deg,rgba(13,143,143,.1),rgba(212,168,67,.06));border:1px solid rgba(212,168,67,.1);border-radius:4px;position:relative;overflow:hidden}
+.qb::before{content:'"';position:absolute;top:-10px;left:26px;font-family:'Playfair Display',serif;font-size:13rem;color:rgba(212,168,67,.05);line-height:1;pointer-events:none}
+.qt{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.2vw,1.8rem);font-style:italic;font-weight:400;color:rgba(255,255,255,.82);line-height:1.65;max-width:720px;margin:0 auto 18px}
+.qa{font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.cta-c{text-align:center;margin-top:48px}
+
+/* FOOTER */
+footer{background:#040608;border-top:1px solid rgba(212,168,67,.08);padding:28px 64px;display:flex;justify-content:space-between;align-items:center}
+.fc{font-size:.67rem;color:rgba(255,255,255,.2);letter-spacing:.06em}
+.fc b{color:var(--gold);font-weight:500}
+.fl{display:flex;gap:24px}
+.fl a{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.2);text-decoration:none;transition:.3s}
+.fl a:hover{color:var(--gold)}
+
+/* ANIMATIONS */
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fromR{from{opacity:0;transform:translateY(-50%) translateX(26px)}to{opacity:1;transform:translateY(-50%) translateX(0)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes sc{0%,100%{opacity:1}50%{opacity:.15}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+@media(max-width:960px){
+  #nav{padding:14px 22px}
+  #nav.solid{padding:12px 22px}
+  .links,.hire{display:none!important}
+  .burger{display:flex}
+  .hero-in{padding:78px 22px 0}
+  .pcard{display:none}
+  .arr{display:none}
+  #str{padding:70px 22px}
+  .scards{grid-template-columns:1fr}
+  .qb{padding:38px 24px}
+  footer{padding:22px;flex-direction:column;gap:12px;text-align:center}
+  .sdots{display:none}
+}
+</style>
+</head>
+<body>
+<div id="dot"></div>
+<div id="ring"></div>
+
+<!-- Side dots -->
+<div class="sdots">
+  <a class="sd on" href="index.html" data-t="Home"></a>
+  <a class="sd" href="about.html" data-t="About"></a>
+  <a class="sd" href="experience.html" data-t="Experience"></a>
+  <a class="sd" href="contact.html" data-t="Contact"></a>
+</div>
+
+<!-- Mobile overlay -->
+<div id="mob">
+  <button class="close" id="mclose"><i class="fas fa-times"></i></button>
+  <a href="index.html" class="on">Home</a>
+  <a href="about.html">About</a>
+  <a href="experience.html">Experience</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- Navbar -->
+<nav id="nav">
+  <a class="logo" href="index.html">Glacier<em>.</em>Marothia</a>
+  <ul class="links">
+    <li><a href="index.html" class="on">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="hire" href="contact.html">Hire Me</a>
+  <button class="burger" id="bur"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="glow"></div>
+  <div class="grid"></div>
+  <div class="vline"></div>
+  <div class="hero-in">
+    <div class="tag">Healthcare Operations Executive &nbsp;·&nbsp; Jaipur, India</div>
+    <h1 class="name">
+      <span class="a">Glacier</span>
+      <span class="b">Marothia</span>
+    </h1>
+    <p class="sub">Transforming patient experiences through exceptional hospital administration, OPD excellence and compassionate healthcare coordination — 7+ years across India's leading medical institutions.</p>
+    <div class="btns">
+      <a href="experience.html" class="bg">View My Journey</a>
+      <a href="about.html" class="bo">About Me</a>
+    </div>
+  </div>
+  <div class="pcard">
+    <div class="pc">
+      <div class="pc-img"><img src="photo.jpg" alt="Glacier Marothia"></div>
+      <h3>Glacier Marothia</h3>
+      <p>Sr. Executive – Operations · HCG</p>
+      <div class="pc-stats">
+        <div class="pcs"><span class="pcs-n">7+</span><div class="pcs-l">Years</div></div>
+        <div class="pcs"><span class="pcs-n">5</span><div class="pcs-l">Hospitals</div></div>
+        <div class="pcs"><span class="pcs-n">MA</span><div class="pcs-l">Degree</div></div>
+      </div>
+      <div class="pc-av"><span class="av-d"></span>Open to Opportunities</div>
+    </div>
+  </div>
+  <div class="arr"><span>Scroll</span><div class="arr-l"></div></div>
+  <div class="ticker">
+    <div class="track">
+      <span class="ti">Healthcare Administration</span><span class="ti">OPD Management</span><span class="ti">Patient Counselling</span><span class="ti">Hospital Operations</span><span class="ti">HCG Hospital</span><span class="ti">Narayana Hospital</span><span class="ti">Medical Coordination</span><span class="ti">Patient Relations</span><span class="ti">10+ Years</span>
+      <span class="ti">Healthcare Administration</span><span class="ti">OPD Management</span><span class="ti">Patient Counselling</span><span class="ti">Hospital Operations</span><span class="ti">HCG Hospital</span><span class="ti">Narayana Hospital</span><span class="ti">Medical Coordination</span><span class="ti">Patient Relations</span><span class="ti">10+ Years</span>
+    </div>
+  </div>
+</section>
+
+<!-- Strengths -->
+<section id="str">
+  <div class="wrap">
+    <div style="text-align:center" class="rv">
+      <div class="eye" style="justify-content:center">What I Bring</div>
+      <h2 class="st">Core <em>Strengths</em></h2>
+      <div class="bar" style="margin-left:auto;margin-right:auto"></div>
+    </div>
+    <div class="scards">
+      <div class="sc rv d1">
+        <div class="sc-n">01</div>
+        <div class="sc-i"><i class="fas fa-hospital-user"></i></div>
+        <h3>OPD Excellence</h3>
+        <p>Proven expertise managing high-volume outpatient departments, streamlining patient flow, appointment systems and multi-department coordination for zero-delay service delivery.</p>
+      </div>
+      <div class="sc rv d2">
+        <div class="sc-n">02</div>
+        <div class="sc-i"><i class="fas fa-heart-pulse"></i></div>
+        <h3>Patient-First Mindset</h3>
+        <p>Dedicated to creating compassionate, informed patient experiences across oncology, cardiology, ENT and ophthalmology — turning complex medical journeys into clear, supportive pathways.</p>
+      </div>
+      <div class="sc rv d3">
+        <div class="sc-n">03</div>
+        <div class="sc-i"><i class="fas fa-chart-line"></i></div>
+        <h3>Operations Leadership</h3>
+        <p>Strategic thinker with a record of improving hospital operational efficiency, reducing wait times, strengthening interdepartmental communication and elevating service standards.</p>
+      </div>
+    </div>
+    <div class="qb rv">
+      <p class="qt">"Providing patients with clear information, respectful support and timely coordination is not just a job — it is a commitment to human dignity in healthcare."</p>
+      <div class="qa">— Glacier Marothia</div>
+    </div>
+    <div class="cta-c rv"><a href="about.html" class="bg">Discover My Full Profile →</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="fc">© 2025 <b>Glacier Marothia</b> · Jaipur, Rajasthan, India</div>
+  <div class="fl">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="experience.html">Experience</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.9)';ring.style.borderColor='rgba(212,168,67,.9)'});
+  el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(212,168,67,.5)'});
+});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>50));
+document.getElementById('bur').addEventListener('click',()=>document.getElementById('mob').classList.add('open'));
+document.getElementById('mclose').addEventListener('click',()=>document.getElementById('mob').classList.remove('open'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

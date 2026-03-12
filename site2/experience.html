@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glacier Marothia — Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#07090c;--card:rgba(255,255,255,.03);--border:rgba(255,255,255,.07);--gold:#d4a843;--gold2:#f0cc72;--teal:#0d8f8f;--teal2:#15c2c2;--text:#e2d9cc;--dim:rgba(226,217,204,.42)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none}
+#dot{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#ring{position:fixed;width:34px;height:34px;border:1.5px solid rgba(212,168,67,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .1s ease}
+#nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:14px 64px;background:rgba(7,9,12,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,.1)}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:.04em}
+.logo em{color:var(--gold);font-style:normal}
+.links{display:flex;gap:38px;list-style:none}
+.links a{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-decoration:none;position:relative;padding-bottom:3px;transition:color .3s}
+.links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.links a:hover,.links a.on{color:var(--gold)}
+.links a:hover::after,.links a.on::after{width:100%}
+.hire{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;background:var(--gold);color:#07090c;padding:10px 26px;border-radius:2px;text-decoration:none;transition:all .3s}
+.hire:hover{background:var(--gold2)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:3px}
+.burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+#mob{display:none;position:fixed;inset:0;z-index:900;background:rgba(7,9,12,.97);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px}
+#mob.open{display:flex}
+#mob a{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:rgba(255,255,255,.6);text-decoration:none;transition:.3s}
+#mob a:hover,#mob a.on{color:var(--gold)}
+#mob .close{position:absolute;top:26px;right:32px;background:none;border:none;color:rgba(255,255,255,.3);font-size:1.5rem;cursor:pointer}
+.sdots{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:700;display:flex;flex-direction:column;gap:12px}
+.sd{display:block;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);text-decoration:none;transition:all .3s;position:relative}
+.sd:hover,.sd.on{background:var(--gold);transform:scale(1.5)}
+.sd::before{content:attr(data-t);position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(7,9,12,.9);padding:3px 10px;border-radius:2px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+.sd:hover::before{opacity:1}
+.ph{min-height:36vh;display:flex;align-items:flex-end;padding:76px 64px 52px;margin-top:62px;position:relative;overflow:hidden}
+.ph-glow{position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 78% 28%,rgba(212,168,67,.1) 0%,transparent 52%),radial-gradient(ellipse 45% 55% at 8% 66%,rgba(13,143,143,.18) 0%,transparent 48%)}
+.ph-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(212,168,67,.06) 1px,transparent 1px);background-size:52px 52px}
+.ph-num{font-family:'Playfair Display',serif;font-size:clamp(6rem,14vw,12rem);font-weight:900;color:rgba(212,168,67,.04);position:absolute;right:48px;top:50%;transform:translateY(-50%);line-height:1;pointer-events:none}
+.ph-inner{position:relative;z-index:2}
+.crumb{display:flex;align-items:center;gap:9px;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:13px}
+.crumb a{color:var(--gold);text-decoration:none}
+.crumb span{color:rgba(255,255,255,.18)}
+.ph h1{font-family:'Playfair Display',serif;font-size:clamp(2.3rem,5.5vw,4.8rem);font-weight:900;line-height:.9;color:#fff;letter-spacing:-.02em}
+.ph h1 em{font-style:italic;color:var(--gold)}
+.sec{padding:96px 64px}
+.wrap{max-width:1160px;margin:0 auto}
+/* EXP LAYOUT */
+.elay{display:grid;grid-template-columns:260px 1fr;gap:64px;align-items:start}
+/* SIDEBAR */
+.esb{position:sticky;top:86px}
+.esb-pic{width:66px;height:66px;border-radius:50%;overflow:hidden;border:2.5px solid rgba(212,168,67,.42);margin-bottom:16px}
+.esb-pic img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.esb-ttl{font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:11px}
+.jnav{display:flex;flex-direction:column;gap:2px}
+.jn{padding:10px 12px;border-radius:2px;text-decoration:none;display:block;border-left:2px solid transparent;transition:all .3s}
+.jn:hover,.jn.on{background:rgba(212,168,67,.07);border-left-color:var(--gold)}
+.jn-yr{font-size:.57rem;letter-spacing:.15em;color:var(--dim);margin-bottom:1px}
+.jn-role{font-size:.78rem;font-weight:500;color:var(--text)}
+.jn-org{font-size:.68rem;color:var(--dim)}
+.jn:hover .jn-role,.jn.on .jn-role{color:var(--gold)}
+.sumcard{margin-top:20px;padding:18px 16px;background:var(--card);border:1px solid rgba(212,168,67,.1);border-radius:2px}
+.sum-h{font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:11px}
+.sum-r{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--border)}
+.sum-r:last-child{border:none}
+.sum-lb{font-size:.67rem;color:var(--dim)}
+.sum-vl{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:#fff}
+/* JOBS */
+.jlist{display:flex;flex-direction:column}
+.job{padding:46px 0;border-bottom:1px solid var(--border)}
+.job:first-child{padding-top:0}
+.job:last-child{border:none}
+.job-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:24px;flex-wrap:wrap}
+.job-per{display:inline-flex;align-items:center;gap:7px;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal2);margin-bottom:7px;background:rgba(21,194,194,.08);border:1px solid rgba(21,194,194,.14);padding:4px 11px;border-radius:1px}
+.job-role{font-family:'Playfair Display',serif;font-size:clamp(1.45rem,2.3vw,1.95rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:5px}
+.job-org{font-size:.82rem;color:var(--dim);display:flex;align-items:center;gap:7px}
+.job-org i{color:var(--gold)}
+.job-badge{flex-shrink:0;padding:7px 14px;border:1px solid rgba(212,168,67,.2);border-radius:1px;font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap;align-self:flex-start}
+.job-badge.cur{background:rgba(212,168,67,.08);border-color:var(--gold);animation:gp 2.5s ease infinite}
+@keyframes gp{0%,100%{box-shadow:0 0 0 0 rgba(212,168,67,.35)}50%{box-shadow:0 0 0 8px rgba(212,168,67,0)}}
+.jbody{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.jbh{font-size:.59rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:11px;display:flex;align-items:center;gap:8px}
+.jbh::after{content:'';flex:1;height:1px;background:var(--border)}
+.jbl{list-style:none}
+.jbl li{font-size:.8rem;line-height:1.76;color:rgba(226,217,204,.6);padding:3px 0 3px 16px;position:relative}
+.jbl li::before{content:'';position:absolute;left:0;top:12px;width:5px;height:5px;border-radius:50%;background:var(--teal)}
+.ach{display:flex;align-items:flex-start;gap:8px;padding:9px 12px;background:var(--card);border-radius:2px;margin-bottom:6px;font-size:.78rem;color:rgba(226,217,204,.6);line-height:1.5;transition:all .3s}
+.ach:hover{background:rgba(212,168,67,.06);color:var(--text)}
+.ach i{color:var(--gold);font-size:.6rem;margin-top:4px;flex-shrink:0}
+footer{background:#040608;border-top:1px solid rgba(212,168,67,.08);padding:28px 64px;display:flex;justify-content:space-between;align-items:center}
+.fc{font-size:.67rem;color:rgba(255,255,255,.2);letter-spacing:.06em}
+.fc b{color:var(--gold);font-weight:500}
+.fl{display:flex;gap:24px}
+.fl a{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.2);text-decoration:none;transition:.3s}
+.fl a:hover{color:var(--gold)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}
+@media(max-width:960px){
+  #nav{padding:12px 22px}
+  .links,.hire{display:none!important}
+  .burger{display:flex}
+  .ph{padding:58px 22px 38px;margin-top:58px}
+  .ph-num{display:none}
+  .sec{padding:66px 22px}
+  .elay{grid-template-columns:1fr}
+  .esb{position:static;display:none}
+  .jbody{grid-template-columns:1fr}
+  footer{padding:22px;flex-direction:column;gap:12px;text-align:center}
+  .sdots{display:none}
+}
+</style>
+</head>
+<body>
+<div id="dot"></div><div id="ring"></div>
+<div class="sdots">
+  <a class="sd" href="index.html" data-t="Home"></a>
+  <a class="sd" href="about.html" data-t="About"></a>
+  <a class="sd on" href="experience.html" data-t="Experience"></a>
+  <a class="sd" href="contact.html" data-t="Contact"></a>
+</div>
+<div id="mob">
+  <button class="close" id="mclose"><i class="fas fa-times"></i></button>
+  <a href="index.html">Home</a><a href="about.html">About</a>
+  <a href="experience.html" class="on">Experience</a><a href="contact.html">Contact</a>
+</div>
+<nav id="nav">
+  <a class="logo" href="index.html">Glacier<em>.</em>Marothia</a>
+  <ul class="links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li>
+    <li><a href="experience.html" class="on">Experience</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="hire" href="contact.html">Hire Me</a>
+  <button class="burger" id="bur"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="ph">
+  <div class="ph-glow"></div><div class="ph-dots"></div>
+  <div class="ph-num">03</div>
+  <div class="ph-inner">
+    <div class="crumb"><a href="index.html">Home</a><span>/</span>Experience</div>
+    <h1>Career <em>Journey</em></h1>
+  </div>
+</div>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="elay">
+      <!-- Sidebar -->
+      <div class="esb rv">
+        <div class="esb-pic"><img src="photo.jpg" alt="Glacier Marothia"></div>
+        <div class="esb-ttl">Work History</div>
+        <div class="jnav" id="jnav">
+          <a class="jn on" href="#j1"><div class="jn-yr">2024 – Present</div><div class="jn-role">Sr. Executive – Operations</div><div class="jn-org">HCG Hospital</div></a>
+          <a class="jn" href="#j2"><div class="jn-yr">2016 – 2019</div><div class="jn-role">Executive OPD Coordinator</div><div class="jn-org">Narayana Hospital</div></a>
+          <a class="jn" href="#j3"><div class="jn-yr">2015 – 2016</div><div class="jn-role">PCS In-charge</div><div class="jn-org">Rungta Hospital</div></a>
+          <a class="jn" href="#j4"><div class="jn-yr">2014 – 2015</div><div class="jn-role">PCS In-charge</div><div class="jn-org">Aadinath ENT</div></a>
+          <a class="jn" href="#j5"><div class="jn-yr">2013 – 2014</div><div class="jn-role">Patient Counsellor</div><div class="jn-org">Vasan Eye Care</div></a>
+        </div>
+        <div class="sumcard">
+          <div class="sum-h">Summary</div>
+          <div class="sum-r"><span class="sum-lb">Experience</span><span class="sum-vl">7+ Yrs</span></div>
+          <div class="sum-r"><span class="sum-lb">Positions</span><span class="sum-vl">5</span></div>
+          <div class="sum-r"><span class="sum-lb">Specialties</span><span class="sum-vl">4</span></div>
+          <div class="sum-r"><span class="sum-lb">Education</span><span class="sum-vl">MA</span></div>
+        </div>
+      </div>
+      <!-- Jobs list -->
+      <div class="jlist">
+
+        <div class="job rv" id="j1">
+          <div class="job-hd">
+            <div><div class="job-per"><i class="fas fa-circle" style="font-size:.38rem"></i> Apr 2024 — Present</div><div class="job-role">Senior Executive — Operations</div><div class="job-org"><i class="fas fa-hospital"></i> HCG Hospital, Jaipur</div></div>
+            <div class="job-badge cur">Current Role</div>
+          </div>
+          <div class="jbody">
+            <div><div class="jbh">Responsibilities</div><ul class="jbl"><li>Manage daily OPD operations ensuring smooth high-volume patient flow</li><li>Coordinate with doctors, nurses &amp; medical staff for efficient scheduling</li><li>Handle patient registration, appointments &amp; end-to-end service coordination</li><li>Maintain patient records &amp; documentation per hospital standards</li><li>Support hospital administration with operational coordination &amp; reporting</li></ul></div>
+            <div><div class="jbh">Key Achievements</div><div class="ach"><i class="fas fa-award"></i>Improved OPD patient flow through structured coordination protocols</div><div class="ach"><i class="fas fa-award"></i>Reduced patient waiting time by optimising appointment scheduling</div><div class="ach"><i class="fas fa-award"></i>Strengthened interdepartmental communication for smoother delivery</div></div>
+          </div>
+        </div>
+
+        <div class="job rv d1" id="j2">
+          <div class="job-hd">
+            <div><div class="job-per"><i class="fas fa-circle" style="font-size:.38rem"></i> Nov 2016 — Nov 2019</div><div class="job-role">Executive OPD Coordinator</div><div class="job-org"><i class="fas fa-hospital"></i> Narayana Hospital, Jaipur</div></div>
+            <div class="job-badge">3 Years</div>
+          </div>
+          <div class="jbody">
+            <div><div class="jbh">Responsibilities</div><ul class="jbl"><li>Managed daily OPD for multiple departments in high-volume tertiary care</li><li>Coordinated with doctors, nurses &amp; diagnostic teams for timely consultations</li><li>Monitored patient queues &amp; optimised scheduling to reduce wait times</li><li>Handled billing, insurance approvals &amp; payment coordination</li><li>Maintained accurate patient records in hospital management systems</li></ul></div>
+            <div><div class="jbh">Key Achievements</div><div class="ach"><i class="fas fa-award"></i>Coordinated daily OPD successfully in high-volume hospital environment</div><div class="ach"><i class="fas fa-award"></i>Improved appointment management, reducing delays across OPD services</div><div class="ach"><i class="fas fa-award"></i>Strengthened coordination between doctors, diagnostics &amp; admin teams</div></div>
+          </div>
+        </div>
+
+        <div class="job rv d1" id="j3">
+          <div class="job-hd">
+            <div><div class="job-per"><i class="fas fa-circle" style="font-size:.38rem"></i> Jul 2015 — Apr 2016</div><div class="job-role">PCS In-charge</div><div class="job-org"><i class="fas fa-hospital"></i> Rungta Hospital, Jaipur</div></div>
+            <div class="job-badge">9 Months</div>
+          </div>
+          <div class="jbody">
+            <div><div class="jbh">Responsibilities</div><ul class="jbl"><li>Supervised daily Patient Care Services ensuring smooth hospital workflow</li><li>Managed patient registration, admission &amp; discharge with accurate documentation</li><li>Monitored front office staff &amp; ensured adherence to hospital protocols</li><li>Assisted in coordinating diagnostic tests &amp; consultation schedules</li></ul></div>
+            <div><div class="jbh">Key Achievements</div><div class="ach"><i class="fas fa-award"></i>Managed high patient footfall maintaining efficient service delivery</div><div class="ach"><i class="fas fa-award"></i>Improved registration &amp; documentation processes for accurate records</div><div class="ach"><i class="fas fa-award"></i>Contributed to improving front office efficiency &amp; service standards</div></div>
+          </div>
+        </div>
+
+        <div class="job rv d1" id="j4">
+          <div class="job-hd">
+            <div><div class="job-per"><i class="fas fa-circle" style="font-size:.38rem"></i> Jan 2014 — Feb 2015</div><div class="job-role">PCS In-charge</div><div class="job-org"><i class="fas fa-hospital"></i> Aadinath ENT Hospital, Jaipur</div></div>
+            <div class="job-badge">1 Year</div>
+          </div>
+          <div class="jbody">
+            <div><div class="jbh">Responsibilities</div><ul class="jbl"><li>Managed daily PCS ensuring smooth coordination with medical staff</li><li>Handled patient registration &amp; scheduling for ENT specialists</li><li>Assisted patients with ENT treatments &amp; diagnostic service information</li><li>Coordinated ENT-related diagnostic tests for smooth service delivery</li></ul></div>
+            <div><div class="jbh">Key Achievements</div><div class="ach"><i class="fas fa-award"></i>Successfully managed coordination in a busy ENT specialist environment</div><div class="ach"><i class="fas fa-award"></i>Improved scheduling &amp; patient flow, reducing consultation wait times</div><div class="ach"><i class="fas fa-award"></i>Resolved patient concerns professionally, contributing to satisfaction</div></div>
+          </div>
+        </div>
+
+        <div class="job rv d1" id="j5">
+          <div class="job-hd">
+            <div><div class="job-per"><i class="fas fa-circle" style="font-size:.38rem"></i> Oct 2013 — Sep 2014</div><div class="job-role">Patient Counsellor</div><div class="job-org"><i class="fas fa-hospital"></i> Vasan Eye Care Hospital, Jaipur</div></div>
+            <div class="job-badge">11 Months</div>
+          </div>
+          <div class="jbody">
+            <div><div class="jbh">Responsibilities</div><ul class="jbl"><li>Provided counselling on LASIK, cataract surgery &amp; ophthalmology treatments</li><li>Explained treatment plans, procedure costs &amp; hospital services to patients</li><li>Supported patients through pre &amp; post-treatment counselling processes</li><li>Assisted front office team with registration &amp; service coordination</li></ul></div>
+            <div><div class="jbh">Key Achievements</div><div class="ach"><i class="fas fa-award"></i>Counselled patients on LASIK &amp; cataract procedures enabling informed decisions</div><div class="ach"><i class="fas fa-award"></i>Maintained high patient satisfaction through empathetic communication</div><div class="ach"><i class="fas fa-award"></i>Increased treatment acceptance through clear &amp; effective explanation</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fc">© 2025 <b>Glacier Marothia</b> · Jaipur, Rajasthan, India</div>
+  <div class="fl"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
+</footer>
+<script>
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.9)';ring.style.borderColor='rgba(212,168,67,.9)'});el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(212,168,67,.5)'})});
+document.getElementById('bur').addEventListener('click',()=>document.getElementById('mob').classList.add('open'));
+document.getElementById('mclose').addEventListener('click',()=>document.getElementById('mob').classList.remove('open'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// Sidebar highlight
+const jobs=document.querySelectorAll('.job');
+const jns=document.querySelectorAll('.jn');
+const so=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){jns.forEach(n=>n.classList.remove('on'));const m=document.querySelector('.jn[href="#'+e.target.id+'"]');if(m)m.classList.add('on')}})},{threshold:.5});
+jobs.forEach(j=>so.observe(j));
+</script>
+</body>
+</html>

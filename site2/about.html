@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glacier Marothia — About</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#07090c;--card:rgba(255,255,255,.03);--border:rgba(255,255,255,.07);--gold:#d4a843;--gold2:#f0cc72;--teal:#0d8f8f;--teal2:#15c2c2;--text:#e2d9cc;--dim:rgba(226,217,204,.42)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none}
+#dot{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+#ring{position:fixed;width:34px;height:34px;border:1.5px solid rgba(212,168,67,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .1s ease}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:800;display:flex;align-items:center;justify-content:space-between;padding:14px 64px;background:rgba(7,9,12,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,168,67,.1)}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;text-decoration:none;letter-spacing:.04em}
+.logo em{color:var(--gold);font-style:normal}
+.links{display:flex;gap:38px;list-style:none}
+.links a{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);text-decoration:none;position:relative;padding-bottom:3px;transition:color .3s}
+.links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.links a:hover,.links a.on{color:var(--gold)}
+.links a:hover::after,.links a.on::after{width:100%}
+.hire{font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;background:var(--gold);color:#07090c;padding:10px 26px;border-radius:2px;text-decoration:none;transition:all .3s}
+.hire:hover{background:var(--gold2)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:3px}
+.burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
+#mob{display:none;position:fixed;inset:0;z-index:900;background:rgba(7,9,12,.97);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:28px}
+#mob.open{display:flex}
+#mob a{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:700;color:rgba(255,255,255,.6);text-decoration:none;transition:.3s}
+#mob a:hover,#mob a.on{color:var(--gold)}
+#mob .close{position:absolute;top:26px;right:32px;background:none;border:none;color:rgba(255,255,255,.3);font-size:1.5rem;cursor:pointer}
+.sdots{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:700;display:flex;flex-direction:column;gap:12px}
+.sd{display:block;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);text-decoration:none;transition:all .3s;position:relative}
+.sd:hover,.sd.on{background:var(--gold);transform:scale(1.5)}
+.sd::before{content:attr(data-t);position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(7,9,12,.9);padding:3px 10px;border-radius:2px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+.sd:hover::before{opacity:1}
+/* PAGE HEADER */
+.ph{min-height:36vh;display:flex;align-items:flex-end;padding:76px 64px 52px;margin-top:62px;position:relative;overflow:hidden}
+.ph-glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 65% at 18% 55%,rgba(13,143,143,.2) 0%,transparent 52%),radial-gradient(ellipse 38% 42% at 82% 18%,rgba(212,168,67,.09) 0%,transparent 44%)}
+.ph-dots{position:absolute;inset:0;background-image:radial-gradient(circle,rgba(212,168,67,.06) 1px,transparent 1px);background-size:52px 52px}
+.ph-num{font-family:'Playfair Display',serif;font-size:clamp(6rem,14vw,12rem);font-weight:900;color:rgba(212,168,67,.04);position:absolute;right:48px;top:50%;transform:translateY(-50%);line-height:1;pointer-events:none}
+.ph-inner{position:relative;z-index:2}
+.crumb{display:flex;align-items:center;gap:9px;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:13px}
+.crumb a{color:var(--gold);text-decoration:none}
+.crumb span{color:rgba(255,255,255,.18)}
+.ph h1{font-family:'Playfair Display',serif;font-size:clamp(2.3rem,5.5vw,4.8rem);font-weight:900;line-height:.9;color:#fff;letter-spacing:-.02em}
+.ph h1 em{font-style:italic;color:var(--gold)}
+/* SHARED */
+.sec{padding:96px 64px}
+.sec-alt{background:rgba(255,255,255,.014);border-top:1px solid rgba(212,168,67,.07);border-bottom:1px solid rgba(212,168,67,.07)}
+.wrap{max-width:1160px;margin:0 auto}
+.eye{font-size:.63rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:11px;margin-bottom:9px}
+.eye::before{content:'';width:22px;height:1px;background:var(--gold)}
+h2.st{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:700;line-height:1;color:#fff}
+h2.st em{font-style:italic;color:var(--gold)}
+.bar{width:68px;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin:22px 0 44px}
+/* ABOUT LAYOUT */
+.ag{display:grid;grid-template-columns:330px 1fr;gap:68px;align-items:start}
+.pcol{position:sticky;top:88px}
+.pframe{position:relative}
+.pimg{width:100%;aspect-ratio:3/4;border-radius:3px;overflow:hidden}
+.pimg img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.pcorner{position:absolute;bottom:-13px;right:-13px;width:58%;height:58%;border-right:1.5px solid rgba(212,168,67,.26);border-bottom:1.5px solid rgba(212,168,67,.26);pointer-events:none}
+.pbadge{position:absolute;bottom:26px;left:-15px;background:var(--gold);padding:12px 17px;font-size:.67rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#07090c;line-height:1.5;z-index:5}
+.clist{margin-top:30px;display:flex;flex-direction:column;gap:9px}
+.ci{display:flex;align-items:center;gap:15px;padding:13px 15px;background:var(--card);border:1px solid var(--border);border-radius:2px;text-decoration:none;color:var(--text);transition:all .3s}
+.ci:hover{border-color:rgba(212,168,67,.3);background:rgba(212,168,67,.04);transform:translateX(5px)}
+.ci-ic{width:33px;height:33px;background:rgba(13,143,143,.18);border:1px solid rgba(21,194,194,.18);border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--teal2);font-size:.8rem;flex-shrink:0;transition:all .3s}
+.ci:hover .ci-ic{background:var(--gold);border-color:var(--gold);color:#07090c}
+.ci-lb{font-size:.57rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:1px}
+.ci-vl{font-size:.83rem}
+/* ABOUT TEXT */
+.ap{font-size:.94rem;line-height:1.87;color:rgba(226,217,204,.67);margin-bottom:17px}
+.ap strong{color:var(--gold);font-weight:600}
+.sbox{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:30px 0}
+.sb{padding:19px 17px;border:1px solid var(--border);border-radius:2px;position:relative;overflow:hidden;transition:all .3s}
+.sb:hover{border-color:rgba(212,168,67,.25);transform:translateY(-2px)}
+.sb::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--teal),var(--gold))}
+.sb-n{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--gold);line-height:1}
+.sb-l{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:3px}
+.sb-d{font-size:.74rem;color:rgba(226,217,204,.48);margin-top:6px;line-height:1.4}
+/* EDUCATION */
+.elist{margin-top:36px;position:relative;padding-left:26px}
+.elist::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),rgba(212,168,67,.1))}
+.ei{position:relative;padding:22px 0 22px 30px;border-bottom:1px solid var(--border)}
+.ei:last-child{border:none}
+.ei-dot{position:absolute;left:-5px;top:27px;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(212,168,67,.14)}
+.ei-yr{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal2);margin-bottom:5px}
+.ei-deg{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:4px}
+.ei-uni{font-size:.8rem;color:var(--dim);display:flex;align-items:center;gap:7px}
+.ei-uni i{color:var(--gold);font-size:.65rem}
+/* SKILLS */
+.skg{display:grid;grid-template-columns:1fr 1fr;gap:54px;margin-top:38px}
+.skh{font-size:.61rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:flex;align-items:center;gap:9px}
+.skh::after{content:'';flex:1;height:1px;background:rgba(212,168,67,.13)}
+.skr{margin-bottom:16px}
+.skt{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;font-size:.81rem;color:var(--text)}
+.skt span:last-child{font-family:'Playfair Display',serif;font-size:.77rem;color:var(--gold);font-weight:700}
+.sktrack{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden}
+.skfill{height:100%;width:0;border-radius:2px;background:linear-gradient(to right,var(--teal),var(--gold));transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+.tc{margin-top:50px}
+.tc-h{font-size:.61rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:15px}
+.tags{display:flex;flex-wrap:wrap;gap:9px}
+.tg{padding:8px 14px;font-size:.7rem;border:1px solid var(--border);border-radius:2px;color:rgba(226,217,204,.58);transition:all .3s;cursor:default}
+.tg:hover{border-color:var(--gold);color:var(--gold);background:rgba(212,168,67,.07);transform:translateY(-2px)}
+.tg.t{border-color:rgba(21,194,194,.2);color:var(--teal2)}
+.tg.t:hover{border-color:var(--teal2);background:rgba(21,194,194,.07)}
+footer{background:#040608;border-top:1px solid rgba(212,168,67,.08);padding:28px 64px;display:flex;justify-content:space-between;align-items:center}
+.fc{font-size:.67rem;color:rgba(255,255,255,.2);letter-spacing:.06em}
+.fc b{color:var(--gold);font-weight:500}
+.fl{display:flex;gap:24px}
+.fl a{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.2);text-decoration:none;transition:.3s}
+.fl a:hover{color:var(--gold)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:translateY(0)}
+.rl{opacity:0;transform:translateX(-22px);transition:opacity .7s,transform .7s}
+.rl.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+@media(max-width:960px){
+  #nav{padding:12px 22px}
+  .links,.hire{display:none!important}
+  .burger{display:flex}
+  .ph{padding:58px 22px 38px;margin-top:58px}
+  .ph-num{display:none}
+  .sec{padding:66px 22px}
+  .ag{grid-template-columns:1fr}
+  .pcol{position:static}
+  .pcorner,.pbadge{display:none}
+  .skg{grid-template-columns:1fr}
+  .sbox{grid-template-columns:1fr 1fr}
+  footer{padding:22px;flex-direction:column;gap:12px;text-align:center}
+  .sdots{display:none}
+}
+</style>
+</head>
+<body>
+<div id="dot"></div><div id="ring"></div>
+<div class="sdots">
+  <a class="sd" href="index.html" data-t="Home"></a>
+  <a class="sd on" href="about.html" data-t="About"></a>
+  <a class="sd" href="experience.html" data-t="Experience"></a>
+  <a class="sd" href="contact.html" data-t="Contact"></a>
+</div>
+<div id="mob">
+  <button class="close" id="mclose"><i class="fas fa-times"></i></button>
+  <a href="index.html">Home</a>
+  <a href="about.html" class="on">About</a>
+  <a href="experience.html">Experience</a>
+  <a href="contact.html">Contact</a>
+</div>
+<nav id="nav">
+  <a class="logo" href="index.html">Glacier<em>.</em>Marothia</a>
+  <ul class="links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="on">About</a></li>
+    <li><a href="experience.html">Experience</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="hire" href="contact.html">Hire Me</a>
+  <button class="burger" id="bur"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="ph">
+  <div class="ph-glow"></div><div class="ph-dots"></div>
+  <div class="ph-num">02</div>
+  <div class="ph-inner">
+    <div class="crumb"><a href="index.html">Home</a><span>/</span>About</div>
+    <h1>About <em>&amp; Skills</em></h1>
+  </div>
+</div>
+
+<!-- About -->
+<section class="sec">
+  <div class="wrap">
+    <div class="ag">
+      <div class="pcol rl">
+        <div class="pframe">
+          <div class="pimg"><img src="photo.jpg" alt="Glacier Marothia"></div>
+          <div class="pcorner"></div>
+          <div class="pbadge">7+ Years<br>Healthcare</div>
+        </div>
+        <div class="clist">
+          <a class="ci" href="tel:+919636841153"><div class="ci-ic"><i class="fas fa-phone"></i></div><div><div class="ci-lb">Phone</div><div class="ci-vl">+91 96368 41153</div></div></a>
+          <a class="ci" href="mailto:Glaciermarwal@gmail.com"><div class="ci-ic"><i class="fas fa-envelope"></i></div><div><div class="ci-lb">Email</div><div class="ci-vl">Glaciermarwal@gmail.com</div></div></a>
+          <div class="ci"><div class="ci-ic"><i class="fas fa-map-marker-alt"></i></div><div><div class="ci-lb">Location</div><div class="ci-vl">Jaipur, Rajasthan, India</div></div></div>
+          <div class="ci"><div class="ci-ic" style="color:var(--teal2)"><i class="fas fa-circle" style="font-size:.42rem"></i></div><div><div class="ci-lb">Status</div><div class="ci-vl" style="color:var(--teal2)">Open to Opportunities</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="rv"><div class="eye">My Story</div><h2 class="st">A Decade of <em>Compassionate</em> Healthcare</h2><div class="bar"></div></div>
+        <div class="rv d1">
+          <p class="ap">With a <strong>Master of Arts from Rajasthan University</strong> and over ten years of frontline healthcare experience, I have built a career defined by one central purpose: ensuring that every patient feels informed, supported and cared for.</p>
+          <p class="ap">My journey has taken me through Jaipur's most respected institutions — from <strong>Vasan Eye Care</strong> to <strong>Narayana Hospital</strong>, <strong>Rungta Hospital</strong> and currently <strong>HCG Hospital</strong> — each role deepening my expertise in hospital operations, clinical coordination and patient-centred care.</p>
+          <p class="ap">I specialise in <strong>OPD management</strong>, high-volume patient coordination, medical documentation and building communication bridges between clinical teams and patients. My work consistently results in <strong>reduced wait times</strong>, smoother workflows and higher patient satisfaction.</p>
+        </div>
+        <div class="sbox rv d2">
+          <div class="sb"><span class="sb-n">7+</span><div class="sb-l">Years Experience</div><div class="sb-d">Oncology, cardiology, ENT &amp; ophthalmology</div></div>
+          <div class="sb"><span class="sb-n">5</span><div class="sb-l">Hospitals Served</div><div class="sb-d">HCG, Narayana, Rungta, Aadinath &amp; Vasan</div></div>
+          <div class="sb"><span class="sb-n">MA</span><div class="sb-l">Post Graduate</div><div class="sb-d">Master of Arts, Rajasthan University</div></div>
+          <div class="sb"><span class="sb-n">OPD</span><div class="sb-l">Specialist</div><div class="sb-d">High-volume outpatient operations expert</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Education -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="rv"><div class="eye">Academic Background</div><h2 class="st"><em>Education</em> &amp; Qualifications</h2><div class="bar"></div></div>
+    <div class="elist">
+      <div class="ei rv d1"><div class="ei-dot"></div><div class="ei-yr">2011 — 2013</div><div class="ei-deg">Master of Arts</div><div class="ei-uni"><i class="fas fa-university"></i> Rajasthan University, Jaipur</div></div>
+      <div class="ei rv d2"><div class="ei-dot"></div><div class="ei-yr">2008 — 2011</div><div class="ei-deg">Bachelor of Arts</div><div class="ei-uni"><i class="fas fa-university"></i> Rajasthan University, Jaipur</div></div>
+      <div class="ei rv d3"><div class="ei-dot"></div><div class="ei-yr">2008</div><div class="ei-deg">Senior Secondary (12th Grade)</div><div class="ei-uni"><i class="fas fa-school"></i> Rajasthan Board of Secondary Education</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv"><div class="eye">Competencies</div><h2 class="st">Skills &amp; <em>Expertise</em></h2><div class="bar"></div></div>
+    <div class="skg">
+      <div class="rv">
+        <div class="skh">Clinical Operations</div>
+        <div class="skr"><div class="skt"><span>OPD Coordination</span><span>96%</span></div><div class="sktrack"><div class="skfill" data-w="96"></div></div></div>
+        <div class="skr"><div class="skt"><span>Patient Registration &amp; Flow</span><span>94%</span></div><div class="sktrack"><div class="skfill" data-w="94"></div></div></div>
+        <div class="skr"><div class="skt"><span>Appointment Scheduling</span><span>95%</span></div><div class="sktrack"><div class="skfill" data-w="95"></div></div></div>
+        <div class="skr"><div class="skt"><span>Medical Documentation</span><span>90%</span></div><div class="sktrack"><div class="skfill" data-w="90"></div></div></div>
+        <div class="skr"><div class="skt"><span>Diagnostic Coordination</span><span>88%</span></div><div class="sktrack"><div class="skfill" data-w="88"></div></div></div>
+      </div>
+      <div class="rv d1">
+        <div class="skh">Administration &amp; Relations</div>
+        <div class="skr"><div class="skt"><span>Patient Counselling</span><span>93%</span></div><div class="sktrack"><div class="skfill" data-w="93"></div></div></div>
+        <div class="skr"><div class="skt"><span>Hospital Administration</span><span>91%</span></div><div class="sktrack"><div class="skfill" data-w="91"></div></div></div>
+        <div class="skr"><div class="skt"><span>Billing Coordination</span><span>85%</span></div><div class="sktrack"><div class="skfill" data-w="85"></div></div></div>
+        <div class="skr"><div class="skt"><span>Team Leadership</span><span>89%</span></div><div class="sktrack"><div class="skfill" data-w="89"></div></div></div>
+        <div class="skr"><div class="skt"><span>Complaint Resolution</span><span>92%</span></div><div class="sktrack"><div class="skfill" data-w="92"></div></div></div>
+      </div>
+    </div>
+    <div class="tc rv d2">
+      <div class="tc-h">All Competencies</div>
+      <div class="tags">
+        <span class="tg t">Healthcare Administration</span><span class="tg">Hospital Operations</span><span class="tg t">OPD Management</span><span class="tg">Patient Flow</span><span class="tg t">Patient Counselling</span><span class="tg">Relationship Management</span><span class="tg">Front Office</span><span class="tg t">Medical Scheduling</span><span class="tg">Billing Coordination</span><span class="tg">Insurance Processing</span><span class="tg t">Clinical Coordination</span><span class="tg">Documentation</span><span class="tg">Team Collaboration</span><span class="tg t">Communication</span><span class="tg">Problem Solving</span><span class="tg">Multitasking</span><span class="tg t">Empathy</span><span class="tg">Quality Standards</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fc">© 2025 <b>Glacier Marothia</b> · Jaipur, Rajasthan, India</div>
+  <div class="fl"><a href="index.html">Home</a><a href="about.html">About</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a></div>
+</footer>
+<script>
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.transform='translate(-50%,-50%) scale(1.9)';ring.style.borderColor='rgba(212,168,67,.9)'});el.addEventListener('mouseleave',()=>{ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(212,168,67,.5)'})});
+document.getElementById('bur').addEventListener('click',()=>document.getElementById('mob').classList.add('open'));
+document.getElementById('mclose').addEventListener('click',()=>document.getElementById('mob').classList.remove('open'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');e.target.querySelectorAll('.skfill').forEach(f=>setTimeout(()=>f.style.width=f.dataset.w+'%',200))}}),{threshold:.12});
+document.querySelectorAll('.rv,.rl').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
